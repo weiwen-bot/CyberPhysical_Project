@@ -1,0 +1,7 @@
+Wei Wens Raspberry 
+- Hostname = raspberrypiww
+User
+- Name : tanwe
+- pwd : 1234
+Putty to SSH into the Pi
+WinSCP to transfer Files into Pi 
