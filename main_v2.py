@@ -64,7 +64,7 @@ if __name__ == "__main__":
         insert_data(data,sheet)
         print("Done Upload")
     try:
-        schedule.every(0.2).minutes.do(job)
+        schedule.every(0.1).minutes.do(job)
 
     except Exception as e:
         print(e)
