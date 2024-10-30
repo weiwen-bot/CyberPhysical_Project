@@ -54,6 +54,7 @@ if __name__ == "__main__":
         dist = measure_distance()
         print(f"Distance {dist}")
         columns = ['Weight','Gas','Dist']
+        print(f"Value {[weight_data,gas_data,dist]}")
         print("Storing DF")
         df = pd.DataFrame([weight_data,gas_data,dist], columns = columns)
         print("DF Done")
