@@ -42,15 +42,23 @@ if __name__ == "__main__":
     drive_service = setupauth()
 
     try:
-
+        print("Getting Weight Data")
         weight_data = get_weight()
+        print(f"Weight {weight_data}")
+        print("Getting Gas Data")
         gas_data = get_gasdata()
+        print(f"Gas {gas_data}")
+        print("Getting Distance Data")
         dist = measure_distance()
+        print(f"Distance {dist}")
         columns = ['Weight','Gas','Dist']
+        print("Storing DF")
         df = pd.DataFrame([weight_data,gas_data,dist], columns = columns)
         filename = "data.csv"
         df.to_csv(filename,index=False)
+        print("Uploading File")
         uploadFile(drive_service,filename)
+        print("Done Upload")
     except Exception as e:
         print(e)
     
