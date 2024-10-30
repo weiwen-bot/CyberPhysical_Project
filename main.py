@@ -10,6 +10,7 @@ from mq135 import get_gasdata
 from ultrasonic import measure_distance
 import pandas as pd
 from dotenv import load_dotenv
+from datetime import datetime
 
 import schedule
 import time
@@ -59,9 +60,15 @@ if __name__ == "__main__":
         print(f"Value {[weight_data,gas_data,dist]}")
         print("Storing DF")
         df = pd.DataFrame([[weight_data,gas_data,dist]], columns = columns)
+        
         print(df,"DFFFFFF")
         print("DF Done")
-        filename = "data.csv"
+        now = datetime.now()
+
+        # Format the date to dd-mm-yyyy
+        formatted_date = now.strftime("%d-%m-%Y")
+        curr_time = time.strftime("%H:%M:%S", time.localtime())
+        filename = f"data_{formatted_date}_{curr_time}.csv"
         df.to_csv(filename,index=False)
         print("Uploading File")
         uploadFile(drive_service,filename)
