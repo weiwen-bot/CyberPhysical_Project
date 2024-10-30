@@ -17,21 +17,26 @@ def get_weight():
 
     # Initialize HX711
     hx = HX711(dout_pin=DT_PIN, pd_sck_pin=SCK_PIN)
+    ###########
+    hx.zero()
+    reading = hx.get_data_mean(readings=100)
+
+    ###########
     # List all attributes and methods
-    baseline = 34705 -1800 -930
-    raw_data = sum(hx.get_raw_data(100))/100
-    agg_weight = (raw_data) + baseline
+    # baseline = 34705 -1800 -930
+    # raw_data = sum(hx.get_raw_data(100))/100
+    # agg_weight = (raw_data) + baseline
 
-    # known_weight_reading = -34500 - baseline
-    print(f"RAW VALUE NOT SCALED {raw_data/(raw_data/220)}")
+    # # known_weight_reading = -34500 - baseline
+    # print(f"RAW VALUE NOT SCALED {raw_data/(raw_data/220)}")
 
 
-    scaling_factor = -0.36
+    # scaling_factor = -0.36
 
     try:
         # Get the average weight over 5 readings
-        weight = agg_weight * scaling_factor
-        return weight
+        # weight = agg_weight * scaling_factor
+        return reading
     except Exception as e:
         print(f"Error reading weight: {e}")
         return None
