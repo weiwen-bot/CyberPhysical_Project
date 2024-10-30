@@ -9,33 +9,39 @@ import RPi.GPIO as GPIO
 
 # Function to measure distance
 def measure_distance():
-    GPIO.setmode(GPIO.BCM)
+    try:
+        GPIO.setmode(GPIO.BCM)
 
-    # Define GPIO pins
-    TRIG = 23  # GPIO pin for Trig
-    ECHO = 24  # GPIO pin for Echo
+        # Define GPIO pins
+        TRIG = 23  # GPIO pin for Trig
+        ECHO = 24  # GPIO pin for Echo
 
-    # Set up the GPIO pins
-    GPIO.setup(TRIG, GPIO.OUT)  # Trig pin as output
-    GPIO.setup(ECHO, GPIO.IN)   # Echo pin as input
+        # Set up the GPIO pins
+        GPIO.setup(TRIG, GPIO.OUT)  # Trig pin as output
+        GPIO.setup(ECHO, GPIO.IN)   # Echo pin as input
 
-    GPIO.output(TRIG, False)
-    time.sleep(2)  # Allow sensor to settle
+        GPIO.output(TRIG, False)
+        time.sleep(2)  # Allow sensor to settle
 
-    GPIO.output(TRIG, True)
-    time.sleep(0.00001)
-    GPIO.output(TRIG, False)
+        GPIO.output(TRIG, True)
+        time.sleep(0.00001)
+        GPIO.output(TRIG, False)
 
-    start_time = time.time()
-    while GPIO.input(ECHO) == 0:
         start_time = time.time()
+        while GPIO.input(ECHO) == 0:
+            start_time = time.time()
 
-    while GPIO.input(ECHO) == 1:
-        stop_time = time.time()
+        while GPIO.input(ECHO) == 1:
+            stop_time = time.time()
 
-    time_elapsed = stop_time - start_time
-    distance = (time_elapsed * 34300) / 2  # Distance in cm
-    return distance
+        time_elapsed = stop_time - start_time
+        distance = (time_elapsed * 34300) / 2  # Distance in cm
+        return distance
+
+    except Exception as e:
+        print(f"Ultrasonic Error {e}")
+    finally:
+        GPIO.cleanup()
 
 # Google Drive upload function
 # def upload_to_google_drive(file_name):

@@ -18,6 +18,8 @@ def get_gasdata():
                 return("High Gas Levels Detected!")
             else:
                 return("Gas Levels Are Normal.")
-    except KeyboardInterrupt:
+    except Exception as e:
+        
+        print(f"Gas Error {e}")
+    finally:
         GPIO.cleanup()
-        print("Program terminated.")

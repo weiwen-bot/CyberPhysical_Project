@@ -11,6 +11,9 @@ from ultrasonic import measure_distance
 import pandas as pd
 from dotenv import load_dotenv
 
+import schedule
+import time
+
 
 def setupauth():
         # Setup the Drive v3 API
@@ -40,8 +43,7 @@ if __name__ == "__main__":
     load_dotenv()
     FOLDER_ID = os.getenv('FOLDER_ID')
     drive_service = setupauth()
-
-    try:
+    def job():
         print("Getting Weight Data")
         weight_data = get_weight()
         print(f"Weight {weight_data}, Type: {type(weight_data)}")
@@ -64,8 +66,18 @@ if __name__ == "__main__":
         print("Uploading File")
         uploadFile(drive_service,filename)
         print("Done Upload")
+    try:
+        schedule.every(0.2).minutes.do(job)
+
     except Exception as e:
         print(e)
+
+    while True:
+ 
+        # Checks whether a scheduled task 
+        # is pending to run or not
+        schedule.run_pending()
+        time.sleep(1)
     
     
 
