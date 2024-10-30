@@ -57,6 +57,7 @@ if __name__ == "__main__":
         print(f"Value {[weight_data,gas_data,dist]}")
         print("Storing DF")
         df = pd.DataFrame([weight_data,gas_data,dist], columns = columns)
+        print(df,"DFFFFFF")
         print("DF Done")
         filename = "data.csv"
         df.to_csv(filename,index=False)
