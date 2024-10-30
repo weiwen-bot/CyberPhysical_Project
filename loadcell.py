@@ -18,19 +18,12 @@ def get_weight():
     # Initialize HX711
     hx = HX711(dout_pin=DT_PIN, pd_sck_pin=SCK_PIN)
     # List all attributes and methods
-    print(dir(hx))
 
-    # Get help on a specific function (if you think it might be named differently)
-    help(hx.getweightmean)  # Replace with the actual function name you are trying to use
-
-    # Reset the HX711 and tare the scale
-    hx.reset()   # Reset the HX711
-    print(hx)
-    hx.tare()    # Tare the scale (set baseline to 0)
+    reading  = hx.get_raw_data()
 
     try:
         # Get the average weight over 5 readings
-        weight = hx.get_weight_mean(5)
+        weight  = hx.get_raw_data()
         return weight
     except Exception as e:
         print(f"Error reading weight: {e}")
