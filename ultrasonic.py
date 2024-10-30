@@ -5,18 +5,20 @@ import os
 
 
 # Set up GPIO mode
-GPIO.setmode(GPIO.BCM)
 
-# Define GPIO pins
-TRIG = 23  # GPIO pin for Trig
-ECHO = 24  # GPIO pin for Echo
-
-# Set up the GPIO pins
-GPIO.setup(TRIG, GPIO.OUT)  # Trig pin as output
-GPIO.setup(ECHO, GPIO.IN)   # Echo pin as input
 
 # Function to measure distance
 def measure_distance():
+    GPIO.setmode(GPIO.BCM)
+
+    # Define GPIO pins
+    TRIG = 23  # GPIO pin for Trig
+    ECHO = 24  # GPIO pin for Echo
+
+    # Set up the GPIO pins
+    GPIO.setup(TRIG, GPIO.OUT)  # Trig pin as output
+    GPIO.setup(ECHO, GPIO.IN)   # Echo pin as input
+    
     GPIO.output(TRIG, False)
     time.sleep(2)  # Allow sensor to settle
 

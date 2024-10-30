@@ -5,7 +5,10 @@ from oauth2client import file, client, tools
 from googleapiclient.http import MediaFileUpload,MediaIoBaseDownload
 import io
 import os
-
+from loadcell import get_weight
+from mq135 import get_gasdata
+from ultrasonic import measure_distance
+import pandas as pd
 from dotenv import load_dotenv
 
 
@@ -37,6 +40,20 @@ if __name__ == "__main__":
     load_dotenv()
     FOLDER_ID = os.getenv('FOLDER_ID')
     drive_service = setupauth()
-    uploadFile(drive_service,"test.csv")
+
+    try:
+
+        weight_data = get_weight()
+        gas_data = get_gasdata()
+        dist = measure_distance()
+        columns = ['Weight','Gas','Dist']
+        df = pd.DataFrame([weight_data,gas_data,dist], columns = columns)
+        filename = "data.csv"
+        df.to_csv(filename,index=False)
+        uploadFile(drive_service,filename)
+    except Exception as e:
+        print(e)
+    
+    
 
     
