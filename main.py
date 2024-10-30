@@ -44,7 +44,9 @@ if __name__ == "__main__":
     try:
         print("Getting Weight Data")
         weight_data = get_weight()
-        print(f"Weight {weight_data}")
+        print(f"Weight {weight_data}, Type: {type(weight_data)}")
+        if type(weight_data) == list:
+            weight_data = weight_data[0]
         print("Getting Gas Data")
         gas_data = get_gasdata()
         print(f"Gas {gas_data}")
