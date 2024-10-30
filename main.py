@@ -54,6 +54,7 @@ if __name__ == "__main__":
         columns = ['Weight','Gas','Dist']
         print("Storing DF")
         df = pd.DataFrame([weight_data,gas_data,dist], columns = columns)
+        print("DF Done")
         filename = "data.csv"
         df.to_csv(filename,index=False)
         print("Uploading File")
