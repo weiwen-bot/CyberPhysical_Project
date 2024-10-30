@@ -23,7 +23,7 @@ def get_weight():
     agg_weight = (raw_data) + baseline
 
     # known_weight_reading = -34500 - baseline
-    print(f"RAW VALUE NOT SCALED {raw_data}")
+    print(f"RAW VALUE NOT SCALED {raw_data/(raw_data/220)}")
 
 
     scaling_factor = -0.36
