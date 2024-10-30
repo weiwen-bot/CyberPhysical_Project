@@ -37,13 +37,6 @@ def insert_data(data,sheet):
     print("The row has been added at row:", next_row)
 
  
-try:
-    while True:
-        insertrow = ["HEHE","HEE"]
-        insert_data(insertrow)
-        time.sleep(5)
-except KeyboardInterrupt:
-    print("Stopped")
 
 if __name__ == "__main__":
     load_dotenv()
@@ -77,8 +70,5 @@ if __name__ == "__main__":
         print(e)
 
     while True:
- 
-        # Checks whether a scheduled task 
-        # is pending to run or not
         schedule.run_pending()
         time.sleep(1)
