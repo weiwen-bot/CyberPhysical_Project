@@ -1,4 +1,4 @@
 .venv/
-certs.json
+client_secrets.json
 .env
 credentials.json
