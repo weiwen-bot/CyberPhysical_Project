@@ -18,9 +18,9 @@ def get_weight():
     # Initialize HX711
     hx = HX711(dout_pin=DT_PIN, pd_sck_pin=SCK_PIN)
     # List all attributes and methods
-    # baseline = -35000
+    baseline = 34705
 
-    agg_weight = (sum(hx.get_raw_data(1000))/1000) + 34705
+    agg_weight = (sum(hx.get_raw_data(100))/100) + baseline
 
     # known_weight_reading = -34500 - baseline
 
