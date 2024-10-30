@@ -21,6 +21,9 @@ def get_weight():
     hx.zero()
     reading = hx.get_data_mean(readings=100)
 
+    scale = reading/ 200
+    hx.set_scale_ratio(scale)
+
     ###########
     # List all attributes and methods
     # baseline = 34705 -1800 -930
@@ -35,8 +38,8 @@ def get_weight():
 
     try:
         # Get the average weight over 5 readings
-        # weight = agg_weight * scaling_factor
-        return reading
+        weight = hx.get_weight_mean()
+        return weight
     except Exception as e:
         print(f"Error reading weight: {e}")
         return None
