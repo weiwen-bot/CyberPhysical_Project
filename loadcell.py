@@ -19,10 +19,11 @@ def get_weight():
     hx = HX711(dout_pin=DT_PIN, pd_sck_pin=SCK_PIN)
     # List all attributes and methods
     baseline = 34705 -1800 -930
-
-    agg_weight = (sum(hx.get_raw_data(100))/100) + baseline
+    raw_data = sum(hx.get_raw_data(100))/100
+    agg_weight = (raw_data) + baseline
 
     # known_weight_reading = -34500 - baseline
+    print(f"RAW VALUE NOT SCALED {raw_data}")
 
 
     scaling_factor = -0.36
