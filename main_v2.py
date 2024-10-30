@@ -41,7 +41,7 @@ def insert_data(data,sheet):
 if __name__ == "__main__":
     load_dotenv()
     sheet = auth()
-    def job(sheet):
+    def job():
         print("Getting Weight Data")
         weight_data = get_weight()
         print(f"Weight {weight_data}, Type: {type(weight_data)}")
