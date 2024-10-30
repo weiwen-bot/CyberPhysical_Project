@@ -25,7 +25,7 @@ def get_weight():
     # known_weight_reading = -34500 - baseline
 
 
-    scaling_factor = 0.36
+    scaling_factor = -0.36
 
     try:
         # Get the average weight over 5 readings
