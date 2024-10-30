@@ -20,7 +20,7 @@ def get_weight():
     # List all attributes and methods
     # baseline = -35000
 
-    agg_weight = (sum(hx.get_raw_data(5))/5) + 34555
+    agg_weight = (sum(hx.get_raw_data(5))/5) + 34846
 
     # known_weight_reading = -34500 - baseline
 
