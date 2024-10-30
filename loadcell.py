@@ -17,9 +17,15 @@ def get_weight():
 
     # Initialize HX711
     hx = HX711(dout_pin=DT_PIN, pd_sck_pin=SCK_PIN)
+    # List all attributes and methods
+    print(dir(hx))
+
+    # Get help on a specific function (if you think it might be named differently)
+    help(hx.getweightmean)  # Replace with the actual function name you are trying to use
 
     # Reset the HX711 and tare the scale
     hx.reset()   # Reset the HX711
+    print(hx)
     hx.tare()    # Tare the scale (set baseline to 0)
 
     try:
