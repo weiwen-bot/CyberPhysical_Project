@@ -5,7 +5,7 @@ import os
 
 
 # Set up GPIO mode
-
+import RPi.GPIO as GPIO
 
 # Function to measure distance
 def measure_distance():
@@ -18,7 +18,7 @@ def measure_distance():
     # Set up the GPIO pins
     GPIO.setup(TRIG, GPIO.OUT)  # Trig pin as output
     GPIO.setup(ECHO, GPIO.IN)   # Echo pin as input
-    
+
     GPIO.output(TRIG, False)
     time.sleep(2)  # Allow sensor to settle
 
