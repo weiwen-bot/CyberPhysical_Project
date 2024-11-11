@@ -48,5 +48,5 @@ hx.zero()
 
 if __name__ == "__main__":
     while True:
-        reading = hx.get_data_mean()
+        reading = hx.get_data_mean(readings=100)
         print("Fixing ",reading)
