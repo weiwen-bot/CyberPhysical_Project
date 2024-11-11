@@ -14,10 +14,14 @@ def get_gasdata():
     try:
         while True:
             gas_detected = GPIO.input(mq135_digital_pin)
-            if gas_detected==GPIO.HIGH:
-                return("High Gas Levels Detected!")
+            # if gas_detected==GPIO.HIGH:
+            #     return("High Gas Levels Detected!")
+            # else:
+            #     return("Gas Levels Are Normal.")
+            if GPIO.input(mq135_digital_pin):
+                return("TRUE GAS")
             else:
-                return("Gas Levels Are Normal.")
+                return("FALSE GAS")
     except Exception as e:
         
         print(f"Gas Error {e}")
