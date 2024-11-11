@@ -37,8 +37,11 @@ hx = HX711(dout_pin=DT_PIN, pd_sck_pin=SCK_PIN)
 hx.zero()
 
 reading = hx.get_data_mean(readings=100)
-# reading = hx.get_data_mean(readings=100)
+known = input('Enter weight')
+value = float(known)
 
+ratio = reading/value
+hx.set_scale_ratio(ratio)
 # scale = reading/ 200
 # hx.set_scale_ratio(scale)
 
