@@ -51,4 +51,4 @@ reading = hx.get_data_mean(readings=100)
 if __name__ == "__main__":
     while True:
         weight = hx.get_weight_mean()
-        print("Weight data ",reading)
+        print("Weight data ",weight)
