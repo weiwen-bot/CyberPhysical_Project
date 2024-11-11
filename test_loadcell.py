@@ -15,11 +15,38 @@ from datetime import datetime
 import schedule
 import time
 
+import RPi.GPIO as GPIO
+from hx711 import HX711
+import time
+
+
+
+
+# Function to read weight
+
+
+        # Set up GPIO mode
+GPIO.setmode(GPIO.BCM)
+
+DT_PIN = 5   # Connect to Pin 29 (GPIO 5)
+SCK_PIN = 6  # Connect to Pin 31 (GPIO 6)
+
+# Initialize HX711
+hx = HX711(dout_pin=DT_PIN, pd_sck_pin=SCK_PIN)
+###########
+hx.zero()
+# reading = hx.get_data_mean(readings=100)
+
+# scale = reading/ 200
+# hx.set_scale_ratio(scale)
+
+#     # Get the average weight over 5 readings
+# weight = hx.get_weight_mean()
+
+# finally:
+#     GPIO.cleanup()
+
 if __name__ == "__main__":
     while True:
-        print("Getting Weight Data")
-        weight_data = get_weight()
-        print(f"Weight {weight_data}, Type: {type(weight_data)}")
-        if type(weight_data) == list:
-            weight_data = weight_data[0]
-        print(f"Weight {weight_data}")
+        reading = hx.get_data_mean()
+        print("Fixing ",reading)
