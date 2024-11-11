@@ -35,6 +35,8 @@ SCK_PIN = 6  # Connect to Pin 31 (GPIO 6)
 hx = HX711(dout_pin=DT_PIN, pd_sck_pin=SCK_PIN)
 ###########
 hx.zero()
+
+reading = hx.get_data_mean(readings=100)
 # reading = hx.get_data_mean(readings=100)
 
 # scale = reading/ 200
@@ -48,5 +50,5 @@ hx.zero()
 
 if __name__ == "__main__":
     while True:
-        reading = hx.get_data_mean(readings=100)
-        print("Fixing ",reading)
+        weight = hx.get_weight_mean()
+        print("Weight data ",reading)
