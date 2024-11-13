@@ -4,7 +4,7 @@ import time
 
 # Define the pin connected to the MQ135 DO
 mq135_digital_pin = 27
-
+GPIO.setmode(GPIO.BCM)
 # Set up the pin as input
 GPIO.setup(mq135_digital_pin, GPIO.IN)
 try:
