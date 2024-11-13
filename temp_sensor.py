@@ -10,9 +10,10 @@ def get_temp():
     
     try:
         # Read the temperature and humidity
-        dht_device = adafruit_dht.DHT11(board.D16)
+        dht_device = adafruit_dht.DHT11(board.D26)
         print(dht_device,"DHT",type(dht_device))
         print(dir(dht_device),"python obj")
+        
         # dht_device = adafruit_dht.DHT11(16)
         temperature = dht_device.temperature
         humidity = dht_device.humidity
