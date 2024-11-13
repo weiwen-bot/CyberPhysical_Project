@@ -11,10 +11,11 @@ def get_temp():
     try:
         # Read the temperature and humidity
         dht_device = adafruit_dht.DHT11(board.D16)
+        print(dht_device,"DHT")
         # dht_device = adafruit_dht.DHT11(16)
         temperature = dht_device.temperature
         humidity = dht_device.humidity
-        if temperature is not None and humidity is not None:
+        if temperature is not None or humidity is not None:
             print(f"Temp: {temperature}°C    Humidity: {humidity}%")
             return f"Temp: {temperature}°C    Humidity: {humidity}%"
         else:
