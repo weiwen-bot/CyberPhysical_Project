@@ -10,16 +10,20 @@ def get_temp():
     
     try:
         # Read the temperature and humidity
-        # dht_device = adafruit_dht.DHT11(board.D16)
-        dht_device = adafruit_dht.DHT11(16)
+        dht_device = adafruit_dht.DHT11(board.D16)
+        # dht_device = adafruit_dht.DHT11(16)
         temperature = dht_device.temperature
         humidity = dht_device.humidity
-        print(f"Temp: {temperature}°C    Humidity: {humidity}%")
-        return(f"Temp: {temperature}°C    Humidity: {humidity}%")
+        if temperature is not None and humidity is not None:
+            print(f"Temp: {temperature}°C    Humidity: {humidity}%")
+            return f"Temp: {temperature}°C    Humidity: {humidity}%"
+        else:
+            print("Failed to retrieve data from sensor.")
+            return "Failed to retrieve data from sensor."
     except RuntimeError as error:
         # Handle occasional sensor errors
         print(str(error.args[0]) + "Temp Error")
         return(str(error.args[0]) + "Temp Error")
     except Exception as e:
         print(f"Unexpected error: {e}")
-        # Handle any other unexpected errors, keeping the program running
+        return f"Unexpected error: {e}"
