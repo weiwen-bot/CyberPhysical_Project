@@ -21,5 +21,6 @@ def get_gasdata():
     except Exception as e:
         
         print(f"Gas Error {e}")
+        return(f"Gas Error {e}")
     finally:
         GPIO.cleanup()

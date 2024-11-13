@@ -7,6 +7,7 @@ import os
 from loadcell import get_weight
 from mq135 import get_gasdata
 from ultrasonic import measure_distance
+from temp_sensor import get_temp
 import pandas as pd
 from dotenv import load_dotenv
 from datetime import datetime
@@ -42,25 +43,33 @@ if __name__ == "__main__":
     load_dotenv()
     sheet = auth()
     def job():
+        #########################
         print("Getting Weight Data")
         weight_data = get_weight()
         print(f"Weight {weight_data}, Type: {type(weight_data)}")
         if type(weight_data) == list:
             weight_data = weight_data[0]
+        #####################
         print("Getting Gas Data")
         gas_data = get_gasdata()
         print(f"Gas {gas_data}")
+        #######################
         print("Getting Distance Data")
         dist = measure_distance()
         print(f"Distance {dist}")
-        print(f"Value {[weight_data,gas_data,dist]}")
+        ###########################
+        temp = get_temp()
+        print(f"Temp {temp}")
+        ##########################
+        print(f"Value {[weight_data,gas_data,dist,temp]}")
+        ########################
 
         now = datetime.now()
         # Format the date to dd-mm-yyyy
         formatted_date = now.strftime("%d-%m-%Y")
         curr_time = time.strftime("%H:%M:%S", time.localtime())
         print("Inserting Row")
-        data = [weight_data,gas_data,dist,formatted_date,curr_time]
+        data = [weight_data,gas_data,dist,temp,formatted_date,curr_time]
         insert_data(data,sheet)
         print("Done Upload")
     try:
