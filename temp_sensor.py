@@ -11,12 +11,11 @@ def get_temp():
 
     try:
         # Read the temperature and humidity
-        print(dht_device,"DEVICE OUTPUT")
         temperature = dht_device.temperature
         humidity = dht_device.humidity
         print(f"Temp: {temperature}°C    Humidity: {humidity}%")
         return(f"Temp: {temperature}°C    Humidity: {humidity}%")
-    except Exception as error:
+    except RuntimeError as error:
         # Handle occasional sensor errors
-        print(str(error) + "Temp Error")
-        return(str(error) + "Temp Error")
+        print(str(error.args[0]) + "Temp Error")
+        return(str(error.args[0]) + "Temp Error")
