@@ -6,7 +6,7 @@ def get_gasdata():
     GPIO.setmode(GPIO.BCM)
 
     # Define the pin connected to the MQ135 DO
-    mq135_digital_pin = 17
+    mq135_digital_pin = 27
 
     # Set up the pin as input
     GPIO.setup(mq135_digital_pin, GPIO.IN)
