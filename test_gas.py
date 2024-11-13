@@ -11,9 +11,10 @@ try:
     while True:
         gas_detected = GPIO.input(mq135_digital_pin)
         if gas_detected:
-            print("High Gas Levels Detected!")
-        else:
             print("Gas Levels Are Normal.")
+        else:
+            
+            print("High Gas Levels Detected!")
 finally:
     print("Cleaning up")
     GPIO.cleanup()
