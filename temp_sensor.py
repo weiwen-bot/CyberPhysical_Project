@@ -7,7 +7,7 @@ import board
 def get_temp():
 
         # Set up GPIO mode
-    dht_device = adafruit_dht.DHT11(board.D19)
+    dht_device = adafruit_dht.DHT11(board.D16)
 
     try:
         # Read the temperature and humidity
