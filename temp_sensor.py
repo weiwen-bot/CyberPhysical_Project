@@ -1,21 +1,22 @@
-import Adafruit_DHT
 import time
+import adafruit_dht
+import board
 
-
-DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 19
+# Initialize the DHT11 sensor on GPIO19
+dht_device = adafruit_dht.DHT11(board.D19)
 
 try:
     while True:
-
-        humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
-
-        if humidity is not None and temperature is not None:
-            print(f"Temp: {temperature:.1f}C  Humidity: {humidity:.1f}%")
-        else:
-            print("Failed to retrieve data from the sensor")
-
+        try:
+            # Read the temperature and humidity
+            temperature = dht_device.temperature
+            humidity = dht_device.humidity
+            print(f"Temp: {temperature}°C    Humidity: {humidity}%")
+        except RuntimeError as error:
+            # Handle occasional sensor errors
+            print(error.args[0])
         time.sleep(2)
 
 except KeyboardInterrupt:
-    print("Program stopped by user") 
+    dht_device.exit()
+    print("Program stopped by user")
